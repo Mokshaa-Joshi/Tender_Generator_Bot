@@ -3,8 +3,8 @@ from transformers import AutoTokenizer, AutoModel
 import pinecone
 from pdf_processing import extract_text_from_pdf, chunk_and_embed
 from vector_store import init_pinecone, store_vectors_in_pinecone
-from query_handler import query_to_vector, find_similar_chunk
-from response_gen import generate_response
+from query import query_to_vector, find_similar_chunk
+from response import generate_response
 
 # Load Hugging Face model and tokenizer
 model_name = "mistralai/Mixtral-8x7B-Instruct-v0.1"
