@@ -1,0 +1,11 @@
+fitz==1.0.0  # PyMuPDF
+streamlit
+pymongo
+pinecone-client
+transformers
+torch
+pdfplumber
+scikit-learn
+numpy
+dotenv
+langchain_huggingface
