@@ -16,7 +16,7 @@ def chunk_and_embed(text, tokenizer, model, chunk_size=512):
     for chunk in chunks:
         inputs = tokenizer(chunk, return_tensors="pt", truncation=True, padding=True)
         outputs = model(**inputs)
-        embedding = outputs.last_hidden_state.mean(dim=1).squeeze()  # Average pooling
+        embedding = outputs.last_hidden_state.mean(dim=1).squeeze()  
         embeddings.append(embedding.detach().cpu().numpy())
 
     return chunks, embeddings
