@@ -13,3 +13,4 @@ def store_vectors_in_pinecone(index, chunks, embeddings):
     """Store the embeddings and metadata in Pinecone."""
     for i, (chunk, embedding) in enumerate(zip(chunks, embeddings)):
         index.upsert([(str(i), embedding, {"chunk": chunk})])
+
