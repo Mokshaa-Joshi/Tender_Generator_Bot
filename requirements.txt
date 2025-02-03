@@ -6,5 +6,5 @@ langchain
 huggingface_hub
 python-dotenv
 pdfplumber
-fitz
+pymupdf
 langchain_huggingface
