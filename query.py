@@ -5,7 +5,7 @@ def query_to_vector(query, tokenizer, model):
     """Convert the query to an embedding."""
     inputs = tokenizer(query, return_tensors="pt")
     outputs = model(**inputs)
-    query_embedding = outputs.last_hidden_state.mean(dim=1).squeeze() 
+    query_embedding = outputs.last_hidden_state.mean(dim=1).squeeze()  # Average pooling
     return query_embedding.detach().cpu().numpy()
 
 def find_similar_chunk(index, query_vector, top_k=1):
