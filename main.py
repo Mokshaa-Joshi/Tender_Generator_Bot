@@ -1,39 +1,19 @@
 import streamlit as st
-from transformers import AutoTokenizer, AutoModel
-import pinecone
-from pdf_processing import extract_text_from_pdf, chunk_and_embed
-from vector_store import init_pinecone, store_vectors_in_pinecone
-from query import query_to_vector, find_similar_chunk
-from response import generate_response
+from generate_tender import generate_tender
+from pdf_generator import generate_pdf
 
-# Load Hugging Face model and tokenizer
-model_name = "mistralai/Mixtral-8x7B-Instruct-v0.1"
-model = AutoModel.from_pretrained(model_name)
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+st.title("TenderBot - AI-Powered Tender Generation")
 
-# Initialize Pinecone
-api_key = st.secrets["pinecone"]["api_key"]
-index = init_pinecone(api_key)
+query = st.text_input("Enter keywords for your tender:")
 
-# Streamlit UI
-st.title("TenderBot")
-uploaded_file = st.file_uploader("Upload your Tender PDF", type="pdf")
-
-if uploaded_file is not None:
-    # Extract text from PDF and chunk it
-    pdf_text = extract_text_from_pdf(uploaded_file)
-    chunks, embeddings = chunk_and_embed(pdf_text, tokenizer, model)
-
-    # Store vectors in Pinecone
-    if st.button("Store PDF in Pinecone"):
-        store_vectors_in_pinecone(index, chunks, embeddings)
-        st.success("PDF stored in Pinecone.")
-
-    # Query input
-    query = st.text_input("Ask a question about the tender")
-    
+if st.button("Generate Tender"):
     if query:
-        query_vector = query_to_vector(query, tokenizer, model)
-        similar_chunk = find_similar_chunk(index, query_vector)
-        answer = generate_response([similar_chunk], query)
-        st.write(answer)
+        with st.spinner("Generating Tender..."):
+            tender_text = generate_tender(query)
+            pdf_path = generate_pdf(tender_text)
+            st.success("Tender generated successfully!")
+
+            with open(pdf_path, "rb") as f:
+                st.download_button("Download Tender PDF", f, file_name="Tender_Document.pdf", mime="application/pdf")
+    else:
+        st.error("Please enter keywords for tender generation.")
