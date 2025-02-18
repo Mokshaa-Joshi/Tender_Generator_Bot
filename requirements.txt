@@ -4,3 +4,5 @@ openai
 PyMuPDF
 streamlit
 fpdf
+requests
+python-dotenv
