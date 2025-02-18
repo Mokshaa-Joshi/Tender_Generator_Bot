@@ -47,8 +47,8 @@ def generate_tender_content(data):
     The output should be formatted as a formal, well-structured tender document. Make sure the language is clear, professional, and easy to read.
     """
     
-    # OpenAI API call using new method
-    response = openai.chat_completions.create(
+    # Correct API call with the updated method name
+    response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",  # Or use the model you prefer
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
