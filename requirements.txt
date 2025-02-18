@@ -1,11 +1,4 @@
-streamlit
-pymongo
-langchain
-openai
 pinecone-client
-matplotlib
-pandas
-reportlab
-plotly
-fpdf
-python-dotenv
+spacy
+openai
+PyMuPDF
