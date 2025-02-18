@@ -3,7 +3,7 @@ import streamlit as st
 from fpdf import FPDF
 
 # Set OpenAI API key
-openai.api_key = "your_openai_api_key_here"
+openai.api_key = "OPENAI_API_KEY"
 
 # Function to generate the tender document using OpenAI API
 def generate_tender_content(data):
