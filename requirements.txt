@@ -1,6 +1,6 @@
 pinecone-client
 spacy
-openai
+openai==0.28
 PyMuPDF
 streamlit
 fpdf
