@@ -2,3 +2,5 @@ pinecone-client
 spacy
 openai
 PyMuPDF
+streamlit
+fpdf
