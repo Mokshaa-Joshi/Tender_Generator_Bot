@@ -4,10 +4,13 @@ from fpdf import FPDF
 import os
 from dotenv import load_dotenv
 
+# Load environment variables
+load_dotenv()
+
 # Set OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-# Function to generate the tender document using OpenAI API
+# Function to generate the tender content using OpenAI API
 def generate_tender_content(data):
     prompt = f"""
     Generate a detailed tender document based on the following input:
@@ -49,11 +52,12 @@ def generate_tender_content(data):
     The output should be formatted as a formal, well-structured tender document. Make sure the language is clear, professional, and easy to read.
     """
     
-    # Updated API call using GPT-4 chat model
+    # Updated API call using the new chat-completions method
     response = openai.ChatCompletion.create(
-        model="gpt-4",  # Using GPT-4 chat model
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=1500,  # Adjust based on your document length
+        model="gpt-4",  # GPT-4 model, you can switch to another available model if needed
+        messages=[{"role": "system", "content": "You are a helpful assistant."},
+                  {"role": "user", "content": prompt}],
+        max_tokens=1500,  # Adjust this based on your document length
         temperature=0.7
     )
 
