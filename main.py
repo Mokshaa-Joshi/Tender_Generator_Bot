@@ -49,9 +49,9 @@ def generate_tender_content(data):
     The output should be formatted as a formal, well-structured tender document. Make sure the language is clear, professional, and easy to read.
     """
     
-    # Updated API call using the new completions.create method
+    # Updated API call using GPT-4 model
     response = openai.completions.create(
-        model="text-davinci-003",  # You can use other models as needed
+        model="gpt-4",  # Changed to GPT-4
         prompt=prompt,
         max_tokens=1500,  # Adjust this based on your document length
         temperature=0.7
