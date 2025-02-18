@@ -49,15 +49,15 @@ def generate_tender_content(data):
     The output should be formatted as a formal, well-structured tender document. Make sure the language is clear, professional, and easy to read.
     """
     
-    # Updated API call using GPT-4 model
-    response = openai.completions.create(
-        model="gpt-4",  # Changed to GPT-4
-        prompt=prompt,
-        max_tokens=1500,  # Adjust this based on your document length
+    # Updated API call using GPT-4 chat model
+    response = openai.ChatCompletion.create(
+        model="gpt-4",  # Using GPT-4 chat model
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=1500,  # Adjust based on your document length
         temperature=0.7
     )
 
-    return response['choices'][0]['text']
+    return response['choices'][0]['message']['content']
 
 
 # Function to create a PDF from generated tender content
